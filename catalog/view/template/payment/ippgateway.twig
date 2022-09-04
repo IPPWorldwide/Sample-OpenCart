@@ -1,0 +1,43 @@
+<div id="checkout-payment">
+	<div class="text-end"><button type="button" class="btn btn-primary">{{ button_confirm }}</button></div>
+</div>
+<div id="ippgateway_form" style="display:none;">
+	<form action='index.php' class='search-form paymentWidgets' data-brands='VISA MASTER' data-theme='divs'>
+		<input type="hidden" name="route" value="extension/ippgateway/payment/ippgateway|createOrder">
+	</form>
+	<div class="payment_background"></div>
+	<script src='https://pay.ippeurope.com/pay.js?checkoutId={{ checkout_id }}&cryptogram={{ cryptogram }}'></script>
+</div>
+<style>
+	#ippgateway_form {
+		position: 	fixed;
+		height:		100%;
+		width:		100%;
+		top:		0;
+		left:		0;
+	}
+	.payment_background {
+		position: absolute;
+		height:		100%;
+		width:		100%;
+		background:	#FFF;
+		opacity: 	0.5;
+		z-index: 	990;
+	}
+	.paymentWidgets {
+		z-index:	999;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border: 10px black solid;
+		border-radius: 25px;
+		padding: 25px;
+		background: #FFF;
+	}
+</style>
+<script type="text/javascript">
+	jQuery("#checkout-payment button").on("click", function() {
+		$("#ippgateway_form").css("display","block");
+	});
+</script>
